@@ -20,7 +20,6 @@ namespace DownloadFromInternet
 
         private void btnDownload_Click(object sender, EventArgs e)
         {
-
             var url = textBox1.Text;
             if (!string.IsNullOrEmpty(url))
             {
@@ -32,6 +31,7 @@ namespace DownloadFromInternet
                 });
 
                 thread.Start();
+                btnDownload.Enabled = false;
             }
         }
 
@@ -44,11 +44,18 @@ namespace DownloadFromInternet
 
         private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-
             var getSetupName = textBox1.Text.Substring(textBox1.Text.LastIndexOf('/') + 1);
 
-            if (MessageBox.Show(@"Download complete", @"Would you like to move on to the run or open phase?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show(@"Download complete", @"Would you like to move on to the run or open phase?",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
+                Invoke(new MethodInvoker(delegate
+                {
+                    btnDownload.Enabled = true;
+                    progressBar1.Value = 0;
+                    label1.Text = "";
+                }));
+
                 Process.Start(getSetupName);
             }
             else
@@ -65,7 +72,7 @@ namespace DownloadFromInternet
                 var receive = double.Parse(e.BytesReceived.ToString());
                 var total = double.Parse(e.TotalBytesToReceive.ToString());
                 var percentage = receive / total * 100;
-                label1.Text = $@"Downloaded {$"{percentage:0.##}"}%";
+                label1.Text = $@"{$"{percentage:0.##}"}%";
                 progressBar1.Value = int.Parse(Math.Truncate(percentage).ToString(CultureInfo.CurrentCulture));
             }));
         }

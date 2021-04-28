@@ -48,7 +48,7 @@ namespace DownloadFromInternet
             // 
             this.btnDownload.Location = new System.Drawing.Point(384, 13);
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(95, 20);
+            this.btnDownload.Size = new System.Drawing.Size(95, 49);
             this.btnDownload.TabIndex = 1;
             this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = true;
@@ -64,11 +64,13 @@ namespace DownloadFromInternet
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(125, 70);
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(200, 42);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 13);
+            this.label1.Size = new System.Drawing.Size(0, 15);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Downloaded 0 %";
             // 
             // label2
             // 
@@ -83,7 +85,7 @@ namespace DownloadFromInternet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(497, 109);
+            this.ClientSize = new System.Drawing.Size(497, 80);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.progressBar1);
